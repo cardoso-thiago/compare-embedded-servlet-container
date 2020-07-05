@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="tomcat" />
+        <module name="undertow-j9" />
         <module name="jetty" />
         <module name="undertow" />
       </profile>
@@ -15,6 +16,7 @@
       <module name="jetty" target="11" />
       <module name="tomcat" target="11" />
       <module name="undertow" target="11" />
+      <module name="undertow-j9" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -22,6 +24,7 @@
       <module name="jetty" options="-parameters" />
       <module name="tomcat" options="-parameters" />
       <module name="undertow" options="-parameters" />
+      <module name="undertow-j9" options="-parameters" />
     </option>
   </component>
 </project>

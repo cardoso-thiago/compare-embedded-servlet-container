@@ -1,10 +1,4 @@
-FROM azul/zulu-openjdk-alpine:11 AS build
-RUN apk add binutils
-
-ARG DEPENDENCY=target/dependency
-COPY ${DEPENDENCY}/BOOT-INF/lib /app/lib
-COPY ${DEPENDENCY}/META-INF /app/META-INF
-COPY ${DEPENDENCY}/BOOT-INF/classes /app
+FROM adoptopenjdk/openjdk11-openj9 as build
 
 #Verificar porque o jdeps não volta todas as dependências
 #RUN $JAVA_HOME/bin/jdeps --print-module-deps -recursive --multi-release 11 -classpath "/app/lib/*" > java.modules
@@ -18,6 +12,6 @@ RUN addgroup -S cardoso && adduser -S cardoso -G cardoso
 USER cardoso:cardoso
 
 COPY --from=build /jdk_minimal /jdk_minimal
-COPY --from=build /app /app
+COPY target/*jar app.jar
 
-ENTRYPOINT ["/jdk_minimal/bin/java","-cp","app:app/lib/*","br.com.undertow.UndertowApplication"]
+ENTRYPOINT ["/jdk_minimal/bin/java", "-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
