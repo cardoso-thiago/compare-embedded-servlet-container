@@ -11,3 +11,7 @@ Tamanho do jar: 15,7MB
 jdeps --list-deps --multi-release 11 -classpath "tomcat/target/extracted/tomcat-0.0.1-SNAPSHOT/BOOT-INF/lib/*" -recursive -s "tomcat/target/tomcat-0.0.1-SNAPSHOT.jar"
 jdeps --list-deps -recursive --multi-release 11 -classpath "tomcat/target/extracted/tomcat-0.0.1-SNAPSHOT/BOOT-INF/lib/*" "tomcat/target/tomcat-0.0.1-SNAPSHOT.jar"
 jdeps --print-module-deps -recursive --multi-release 11 -classpath "tomcat/target/extracted/tomcat-0.0.1-SNAPSHOT/BOOT-INF/lib/*" "tomcat/target/tomcat-0.0.1-SNAPSHOT.jar"
+jlink --module-path /home/cardoso/Documentos/Profissional/jdk-11/jmods/ --verbose --add-modules java.base,java.logging --compress 2 --no-header-files --output jdk-minimal
+
+
+jdeps --module-path /home/cardoso/Documentos/Profissional/jdk-11/jmods/ --list-deps -R --multi-release 11 -classpath "tomcat/target/extracted/tomcat-0.0.1-SNAPSHOT/BOOT-INF/lib/*" -R "tomcat/target/tomcat-0.0.1-SNAPSHOT.jar"
